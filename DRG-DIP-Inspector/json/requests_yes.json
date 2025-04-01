@@ -1,0 +1,91 @@
+{
+  "details": [
+    {
+      "det_item_fee_sumamt": 5.1,
+      "fee_ocur_time": "2023-11-09 23:00:00",
+      "mdtrt_id": "450100G0000480403669",
+      "med_list_codg": "T001200572",
+      "medins_list_name": "没药",
+      "setl_id": "450100G0000375118090"
+    }
+  ],
+  "main_case": {
+    "diseinfo": [
+      {
+        "diag_code": "N20.000",
+        "diag_name": "肾结石",
+        "diag_type": "1",
+        "maindiag_flag": "1",
+        "setl_id": "450100G0000375118090"
+      },
+      {
+        "diag_code": "R57.101",
+        "diag_name": "失血性休克",
+        "diag_type": "1",
+        "maindiag_flag": "0",
+        "setl_id": "450100G0000375118090"
+      }
+    ],
+    "group_info": {
+      "aaz645": "1",
+      "bke715": "5",
+      "bke716": "HQY",
+      "bke717": "",
+      "setlId": "450100G0000375118090"
+    },
+    "oprninfo": [
+      {
+        "anst_begntime": "2023-11-13 22:50:00",
+        "anst_dr_code": "D450103004040",
+        "anst_dr_name": "覃欢",
+        "anst_endtime": "2023-11-13 22:50:00",
+        "anst_way": "1",
+        "main_oprn_flag": "1",
+        "oper_dr_code": "D450103004040",
+        "oper_dr_name": "覃欢",
+        "oprn_oprt_begntime": "2023-11-13 22:50:00",
+        "oprn_oprt_code": "38.9303",
+        "oprn_oprt_endtime": "2023-11-13 22:50:00",
+        "oprn_oprt_name": "锁骨下静脉穿刺中心静脉置管术",
+        "setl_id": "450100G0000375118090"
+      }
+    ],
+    "setlinfo": {
+      "act_ipt_days": 20,
+      "adm_time": "2023-10-26",
+      "adm_way_code": "2",
+      "age": 37,
+      "aka101": "3",
+      "ake100": "2023-11-20 00:00:00",
+      "certno": "450121************",
+      "chfpdr_code": "D450102018911",
+      "chfpdr_name": "潘雪媚",
+      "dscg_time": "2023-11-15",
+      "dscg_way": "5",
+      "fix_blng_admdvs": "450199",
+      "fixmedins_code": "H45010200132",
+      "fixmedins_name": "南宁市******",
+      "gend": "1",
+      "insutype": "390",
+      "mdtrt_id": "450100G0000480403669",
+      "medfee_sumamt": 43270.48,
+      "psn_cert_type": "**",
+      "psn_name": "叶**",
+      "psn_no": "45000000000000000080556142",
+      "setl_id": "450100G0000375118090"
+    }
+  },
+  "other_cases": [],
+  "vali_types": [
+    "lower_in",
+    "cancer_immunotherapy_up",
+    "cancer_diagnose_up",
+    "cancer_chemotherapy_up",
+    "cancer_radiation_up",
+    "opt_watered_up",
+    "opt_lost_low",
+    "diagnosis_surgery_conflict",
+    "decomposed_hospitalization",
+    "abnormal_visits"
+  ]
+}

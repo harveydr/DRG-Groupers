@@ -1,0 +1,3 @@
+ERROR:root:Request error occurred: Expecting value: line 1 column 1 (char 0). setl_id: IP0004287308
+ERROR:root:Request error occurred: Expecting value: line 1 column 1 (char 0). setl_id: IP0004136610
+ERROR:root:Request error occurred: HTTPConnectionPool(host='localhost', port=5555): Max retries exceeded with url: /validator/validator_person (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x1190f9190>: Failed to establish a new connection: [Errno 61] Connection refused')). setl_id: IP0004269019
