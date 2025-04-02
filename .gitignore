@@ -12,3 +12,22 @@ __pycache__/
 *.egg
 dist/
 build/
+
+# 忽略drg-chs20-rust项目的构建目录
+/drg-chs20-rust/target/
+
+# 忽略drg-chs20-rust的Cargo依赖锁文件
+/drg-chs20-rust/Cargo.lock
+
+# 忽略drg-chs20-rust的IDE配置文件
+/drg-chs20-rust/.idea/
+/drg-chs20-rust/.vscode/
+
+# 忽略drg-chs20-rust编译产生的文件
+/drg-chs20-rust/*.o
+/drg-chs20-rust/*.so
+/drg-chs20-rust/*.dll
+/drg-chs20-rust/*.exe
+
+# 忽略drg-chs20-rust的调试信息
+/drg-chs20-rust/*.dSYM/
