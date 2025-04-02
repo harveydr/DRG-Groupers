@@ -1,0 +1,35 @@
+[
+    {
+        "vid": 1,
+        "gender": "Male",
+        "age": 30,
+        "admit_date": "2024-08-01",
+        "dis_date": "2024-08-15",
+        "total_cost": 1500.00,
+        "birth_weight": 2.5,
+        "diagnosis": [
+            {
+                "diag_id": 1,
+                "diag_code": "A00.0",
+                "diag_name": "Hypertension"
+            },
+            {
+                "diag_id": 2,
+                "diag_code": "A00.0",
+                "diag_name": "Hypertension"
+            }
+        ],
+        "surgery": [
+            {
+                "oper_id": 1,
+                "oper_code": "OP001",
+                "oper_name": "Heart Surgery"
+            },
+            {
+                "oper_id": 2,
+                "oper_code": "OP002",
+                "oper_name": "Lung Surgery"
+            }
+        ]
+    }
+]
