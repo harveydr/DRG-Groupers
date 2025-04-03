@@ -1,53 +1,40 @@
-from flask import Flask, request, Response, stream_with_context
 from datetime import timedelta
 import json
 import ijson
-import redis
-from dataclasses import dataclass, field
-from typing import List
+import receive_api_data
+from flask import Flask, request, jsonify
 
-
-app = Flask(__name__)
-
-# 在 Flask 应用初始化时设置
-app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)  # 设置会话超时时间
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 限制请求体大小为 16MB
-
-
+# 本地导入
+from data_classes import Diagnosis, Surgery, Patient
+from drg_grouper import DrgGrouper
+from get_patient import get_patient
 
 app = Flask(__name__)
-# 连接 Redis 消息队列
-r = redis.Redis(host='localhost', port=6379, db=0)
-
-# 模拟数据验证函数
-def is_data_valid(data):
-    return isinstance(data, dict)
+app.config['JSON_AS_ASCII'] = False
 
 @app.route('/receive', methods=['POST'])
 def receive_data():
     try:
-        # 流式解析 JSON 数组中的元素
-        parser = ijson.items(request.stream, 'item')
-        for item in parser:
-            if is_data_valid(item):
-                # 将有效数据以 JSON 字符串形式存入 Redis 列表
-                r.rpush('data_queue', json.dumps(item))
-        return '数据已成功存入消息队列', 200
-    except Exception as e:
-        return f"发生错误: {str(e)}", 500
+        # 从请求中获取 JSON 数据
+        data = request.get_json()
+        if not data:
+            return jsonify({"error": "请求体为空"}), 400
 
-def process_batch(batch):
-    """
-    处理一批数据
-    :param batch: 包含多条患者数据的列表
-    :return: 处理结果
-    """
-    # 这里添加批量处理逻辑
-    return {
-        "batch_size": len(batch),
-        "status": "success",
-        "data": batch
-    }
+        # 检查接收到的数据是否有效
+        if not is_data_valid(data):
+            return jsonify({"error": "接收到的数据无效"}), 400
+
+        # 封装成Patients对象列表
+        patient = get_patient(data)
+        # 处理数据并返回结果
+        result = process_batch(patient)
+        # 明确指定响应的字符编码为 utf-8
+        resp = jsonify(result)
+        resp.headers['Content-Type'] = 'application/json; charset=utf-8'
+        return resp, 200
+    except Exception as e:
+        # 返回详细的错误信息
+        return jsonify({"error": f"处理请求时发生错误: {str(e)}"}), 500
 
 def is_data_valid(patient):
     """
@@ -57,69 +44,16 @@ def is_data_valid(patient):
     """
     return True
 
+def process_batch(patient: Patient):
+    """
+    处理一批数据
+    :param batch: 包含多条患者数据的列表
+    :return: 处理结果
+    """
+    drg = DrgGrouper(patient)
+    result = drg.to_mdc()
+    return result
 
 
-@dataclass
-class Diagnosis:
-    diag_id: int
-    diag_code: str
-    diag_name: str
-
-@dataclass
-class Surgery:
-    oper_id: int
-    oper_code: str
-    oper_name: str
-
-@dataclass
-class Patient:
-    vid: int
-    gender: str
-    age: int
-    admit_date: str
-    dis_date: str
-    total_cost: float
-    birth_weight: float
-    diagnosis: List[Diagnosis] = field(default_factory=list)
-    surgery: List[Surgery] = field(default_factory=list)
-
-class DrgGrouper:
-    """DRG分组器类，负责根据传入的数据进行DRG分组"""
-    def __init__(self, patient: Patient) -> None:
-        self.grouper_params = patient
-    
-    def batch_to_mdc(self):
-        """
-        将患者分到MDC组
-        :param patient: 患者的信息字典
-        :return: 分组后的MDC代码
-        """
-        # 这里应该有具体的分组逻辑，但为了示例，我们直接返回一个示例MDC代码
-        return "示例MDC代码"
-
-    def batch_to_adrg(self):
-        """
-        批量将患者分到ADRG组
-        :param patients: 患者信息列表
-        :return: 分组后的ADRG代码列表
-        """
-        adrg_codes = []
-        for patient in patients:
-            # 这里应该有具体的分组逻辑，但为了示例，我们直接返回一个示例ADRG代码
-            adrg_codes.append("示例ADRG代码")
-        return adrg_codes
-
-    def batch_to_drg(self):
-        """
-        批量将患者分到DRG组
-        :param patients: 患者信息列表
-        :return: 分组后的DRG代码列表
-        """
-        drg_codes = []
-        for patient in patients:
-            # 这里应该有具体的分组逻辑，但为了示例，我们直接返回一个示例DRG代码
-            drg_codes.append("示例DRG代码")
-        return drg_codes
-
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host='127.0.0.1', port=5000, debug=True)
