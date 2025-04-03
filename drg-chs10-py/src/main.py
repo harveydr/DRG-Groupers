@@ -3,6 +3,8 @@ from datetime import timedelta
 import json
 import ijson
 import redis
+from dataclasses import dataclass, field
+from typing import List
 
 
 app = Flask(__name__)
@@ -55,12 +57,38 @@ def is_data_valid(patient):
     """
     return True
 
+
+
+@dataclass
+class Diagnosis:
+    diag_id: int
+    diag_code: str
+    diag_name: str
+
+@dataclass
+class Surgery:
+    oper_id: int
+    oper_code: str
+    oper_name: str
+
+@dataclass
+class Patient:
+    vid: int
+    gender: str
+    age: int
+    admit_date: str
+    dis_date: str
+    total_cost: float
+    birth_weight: float
+    diagnosis: List[Diagnosis] = field(default_factory=list)
+    surgery: List[Surgery] = field(default_factory=list)
+
 class DrgGrouper:
     """DRG分组器类，负责根据传入的数据进行DRG分组"""
-    def __init__(self, grouper_params) -> None:
-        self.grouper_params = grouper_params
+    def __init__(self, patient: Patient) -> None:
+        self.grouper_params = patient
     
-    def batch_group_to_mdc(self):
+    def batch_to_mdc(self):
         """
         将患者分到MDC组
         :param patient: 患者的信息字典
@@ -69,7 +97,7 @@ class DrgGrouper:
         # 这里应该有具体的分组逻辑，但为了示例，我们直接返回一个示例MDC代码
         return "示例MDC代码"
 
-    def batch_group_to_adrg(self):
+    def batch_to_adrg(self):
         """
         批量将患者分到ADRG组
         :param patients: 患者信息列表
@@ -81,7 +109,7 @@ class DrgGrouper:
             adrg_codes.append("示例ADRG代码")
         return adrg_codes
 
-    def batch_group_to_drg(self):
+    def batch_to_drg(self):
         """
         批量将患者分到DRG组
         :param patients: 患者信息列表
