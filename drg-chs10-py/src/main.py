@@ -51,7 +51,7 @@ def process_batch(patient: Patient):
     :return: 处理结果
     """
     drg = DrgGrouper(patient)
-    result = drg.to_mdc()
+    result = drg.classify_into_mdc()
     return result
 
 

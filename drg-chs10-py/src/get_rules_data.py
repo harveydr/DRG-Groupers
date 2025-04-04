@@ -1,8 +1,11 @@
 import pandas as pd
 import json
+import json
 
-def get_mdc_json(file_path):
+def get_mdc_json(file_path: str) -> list:
     df = pd.read_excel(file_path)
+    if df.empty:
+        return []
     result_list = []
     for mdc_code in df["MDC编码"].unique():
         sub_df = df[df["MDC编码"] == mdc_code]
@@ -14,9 +17,9 @@ def get_mdc_json(file_path):
             }
             icd_list.append(icd_item)
         # 获取唯一的性别、年龄和部位值
-        gender = [val for val in sub_df["性别节点"].unique() if val != '-']
-        age = [val for val in sub_df["年龄节点"].unique() if val!= '-']
-        location = [val for val in sub_df["部位"].unique() if val!= '-']
+        gender = [val for val in pd.unique(sub_df["性别节点"]) if val != '-']
+        age = [val for val in pd.unique(sub_df["年龄节点"]) if val!= '-']
+        location = [val for val in pd.unique(sub_df["部位"]) if val!= '-']
         # 如果只有一个值，则直接取该值，否则保持列表形式
         if len(gender) == 1:
             gender = gender[0]
@@ -152,12 +155,35 @@ def get_exclude_json(file_path):
     result_dict = df.groupby('exclude_icd')['icd_code'].apply(list).to_dict()
     return result_dict
 
+def get_location_diagnoses():
+    try:
+        location_diagnoses = []
+        with open("../config/mdc.json", 'r', encoding='utf-8') as f:
+            mdc_data = json.load(f)
+        for entry in mdc_data:
+            location = entry["入组条件"]["部位"]
+            if location and (isinstance(location, str) and location.strip() or isinstance(location, list) and location):
+                location_diagnoses.append(entry)
+        return location_diagnoses
+    except FileNotFoundError:
+        print("未找到mdc.json文件，请检查文件路径。")
+        return []
+    except json.JSONDecodeError:
+        print("mdc.json文件格式错误，请检查文件内容。")
+        return []
+
 if __name__ == "__main__":
+    # json_data = get_mdc_json("../doc/MDC主诊表.xlsx")
+    # export_to_json(json_data, "../config/mdc.json")
+
     # json_data = get_adrg_json("../doc/ADRG列表.xlsx")
     # export_to_json(json_data, "../config/adrg.json")
 
     # json_data = get_mcc_cc_json("../doc/MCC_CC表.xlsx")
     # export_to_json(json_data, "../config/mcc_cc.json")
 
-    json_data = get_exclude_json("../doc/排除表.xlsx")
-    export_to_json(json_data, "../config/exclude.json")
+    # json_data = get_exclude_json("../doc/排除表.xlsx")
+    # export_to_json(json_data, "../config/exclude.json")
+
+    location_code = get_non_empty_location_diagnoses()
+    print(location_code)

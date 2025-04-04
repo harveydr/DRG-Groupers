@@ -27,11 +27,20 @@ class Patient:
     surgery: List[Surgery] = field(default_factory=list)
 
 @dataclass
-class DrgResult:
-    vid: str
-    mdc_code: str
-    mdc_name: str
-    adrg_code: str
-    adrg_name: str
-    drg_code: str
-    drg_name: str
+class MDC:
+    code: str
+    name: str
+    based: str
+
+@dataclass
+class ADRG:
+    code: str
+    name: str
+    based: str
+
+@dataclass
+class DRG:
+    code: str
+    name: str
+    based: str
+
