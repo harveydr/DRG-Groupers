@@ -1,0 +1,11 @@
+/Users/harveyd/Developer/Projects/DRG-Groupers/drg-chs10-rust/target/debug/deps/libwriteable-f32e8b92ecb72181.rmeta: /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/lib.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/cmp.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/impls.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/ops.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/parts_write_adapter.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/testing.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/try_writeable.rs
+
+/Users/harveyd/Developer/Projects/DRG-Groupers/drg-chs10-rust/target/debug/deps/writeable-f32e8b92ecb72181.d: /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/lib.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/cmp.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/impls.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/ops.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/parts_write_adapter.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/testing.rs /Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/try_writeable.rs
+
+/Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/lib.rs:
+/Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/cmp.rs:
+/Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/impls.rs:
+/Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/ops.rs:
+/Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/parts_write_adapter.rs:
+/Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/testing.rs:
+/Users/harveyd/.cargo/registry/src/rsproxy.cn-0dccff568467c15b/writeable-0.5.5/src/try_writeable.rs:
