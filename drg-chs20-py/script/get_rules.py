@@ -2,7 +2,29 @@ import pandas as pd
 import re
 import json
 from collections import defaultdict
+import pandas as pd
 
+
+def export_to_json(group_rules: list, file_path: str):
+    """
+    将分组规则导出为JSON文件。
+    Args:
+        group_rules (list): 包含MDC主诊表规则和ADRG规则的列表。
+        file_path (str): 导出的JSON文件路径。
+    """
+    with open(file_path, 'w', encoding='utf-8') as json_file:
+        json.dump(group_rules, json_file, ensure_ascii=False, indent=4)
+
+def read_json(file_path: str):
+    """
+    读取JSON文件。
+    Args:
+        file_path (str): JSON文件路径。
+    Returns:
+        list: 包含MDC主诊表规则和ADRG规则的列表。
+    """
+    with open(file_path, 'r', encoding='utf-8') as json_file:
+        return json.load(json_file)
 
 def remove_number(df: pd.DataFrame):
     """去除从PDF复制过来的文本中的页码，页码的分布特征是只在某些行的行尾。"""
@@ -129,7 +151,7 @@ def parse_text(df: pd.DataFrame):
 
 def separate_grouping_logic(group_rules: list):
     """
-    分离入组逻辑中的诊断和手术操作。
+    对于诊断+手术入组的情况，从ADRG[ICD]中分离入组逻辑中的诊断和手术操作。
     Args:
         group_rules (list): 包含MDC主诊表规则和ADRG规则的列表。
     Returns:
@@ -164,61 +186,173 @@ def separate_grouping_logic(group_rules: list):
 
     return group_rules
 
-def doctor_rules(group_rules: list):
-    """
-    1. 统计分组规则的类型；
-    2. 判断分组规则有没有重复入组的情况
-    """
-    statistics = defaultdict(list)
-    for mdc in group_rules:
-        for adrg in mdc["包含的ADRG"]:
-            logic_str = " + ".join(adrg["入组逻辑"])
-            statistics[logic_str].append(adrg["ADRG编码"])
 
-    with open("../rules/statistics.json", 'w', encoding='utf-8') as json_file:
-        json.dump(statistics, json_file, ensure_ascii=False, indent=4)
-
-    print("统计完成，分析结果已写入到statistics.json。")
-
-def export_to_json(group_rules: list, file_path: str):
+def get_check_keys(group_rules: list):
     """
-    将分组规则导出为JSON文件。
+    获取分组规则中需要检查的键。
     Args:
         group_rules (list): 包含MDC主诊表规则和ADRG规则的列表。
-        file_path (str): 导出的JSON文件路径。
-    """
-    with open(file_path, 'w', encoding='utf-8') as json_file:
-        json.dump(group_rules, json_file, ensure_ascii=False, indent=4)
-
-def read_json(file_path: str):
-    """
-    读取JSON文件。
-    Args:
-        file_path (str): JSON文件路径。
     Returns:
-        list: 包含MDC主诊表规则和ADRG规则的列表。
+        set: 包含所有键的集合。
     """
-    with open(file_path, 'r', encoding='utf-8') as json_file:
-        return json.load(json_file)
+    check_keys = []
+    for mdc in group_rules:
+        for adrg in mdc["包含的ADRG"]:
+            for key in adrg:
+                if key not in check_keys and key not in ['ADRG编码', 'ADRG名称', '入组逻辑']:
+                    check_keys.append(key)
+    return check_keys
+
+def check_error_icd(group_rules: list):
+    """
+    检查分组规则中的ICD编码是否存在错误。
+    Args:
+        group_rules (list): 包含MDC主诊表规则和ADRG规则的列表。
+    """
+    error_icds = []
+    
+    # 检查是否存在ICD编码或名称为空的情况
+    check_keys = get_check_keys(group_rules)
+    for mdc in group_rules:
+        for icd in mdc["主诊表"]:
+            if not icd["ICD编码"] or not icd["ICD名称"]:
+                error_icds.append(icd)
+        for adrg in mdc["包含的ADRG"]:
+            for key in check_keys:
+                if key in adrg:
+                    for icd in adrg[key]:
+                        if not icd["ICD编码"] or not icd["ICD名称"]:
+                            error_icds.append(icd)
+    return error_icds
+
+def get_icd_name(df: pd.DataFrame, icd_codes: list):
+    """
+    从DataFrame中获取ICD编码对应的名称。
+    Args:
+        df (pd.DataFrame): 原始的数据文件
+        icd_codes (list): 要查询的ICD编码列表，每个元素是一个包含ICD编码和名称的字典。
+    Returns:
+        list: 包含ICD编码和名称的字典列表。
+    """
+    result = []
+    for icd_item in icd_codes:
+        icd_code = icd_item["ICD编码"]
+        # 查找包含ICD编码的行
+        for _, row in df.iterrows():
+            content = str(row["内容"])  # 强制转换为字符串
+            if content.startswith(icd_code):
+                # 提取ICD名称
+                icd_name = ""
+                start_index = df.index.get_loc(row.name)
+                # 从当前行开始，遍历后续行，直到遇到下一个ICD编码
+                for i in range(start_index, len(df)):
+                    next_content = str(df.iloc[i]["内容"])  # 强制转换为字符串
+                    # 如果遇到下一个ICD编码，则停止
+                    if i != start_index and re.match(r'^[A-Z]?[0-9]{2}\.[A-Za-z0-9.+*]+', next_content):
+                        break
+                    # 拼接名称内容
+                    if i == start_index:
+                        icd_name += next_content[len(icd_code):].strip()  # 去掉ICD编码部分
+                    else:
+                        icd_name += " " + next_content.strip()
+                # 去掉换行符和多余空格
+                icd_name = " ".join(icd_name.split())
+                # 更新ICD名称
+                icd_item["ICD名称"] = icd_name
+                result.append(icd_item)
+                break
+    return result
+
+def update_icd_name(group_rules: list, icd_names: list):
+    """
+    更新分组规则中的ICD名称。
+    Args:
+        group_rules (list): 包含MDC主诊表规则和ADRG规则的列表。
+        icd_names (list): 包含ICD编码和名称的字典列表。
+    """
+    # 将icd_names转换为字典，方便快速查找
+    icd_name_dict = {item["ICD编码"]: item["ICD名称"] for item in icd_names}
+    check_keys = get_check_keys(group_rules)
+    for mdc in group_rules:
+        for icd in mdc["主诊表"]:
+            icd_code = icd["ICD编码"]
+            if icd_code in icd_name_dict:
+                icd["ICD名称"] = icd_name_dict[icd_code]
+        
+        for adrg in mdc["包含的ADRG"]:
+            for key in check_keys:
+                if key in adrg:
+                    for icd in adrg[key]:
+                        icd_code = icd["ICD编码"]
+                        if icd_code in icd_name_dict:
+                            icd["ICD名称"] = icd_name_dict[icd_code]
+
+    # 保存更新后的规则
+    export_to_json(group_rules, "../rules/group_rules.json")
+    print(f"结果已保存到 rules/group_rules.json")
+
+def remove_space(group_rules: list):
+    """
+    去除分组规则中的空格。
+    Args:
+        group_rules (list): 包含MDC主诊表规则和ADRG规则的列表。
+    """
+    check_keys = get_check_keys(group_rules)
+    for mdc in group_rules:
+        for icd in mdc["主诊表"]:
+            icd["ICD名称"] = icd["ICD名称"].replace(" ", "")
+        for adrg in mdc["包含的ADRG"]:
+            for key in check_keys:
+                if key in adrg:
+                    for icd in adrg[key]:
+                        icd["ICD名称"] = icd["ICD名称"].replace(" ", "")
+    
+    export_to_json(group_rules, "../rules/group_rules.json")
+
+def merge_grouping_logic(group_rules: list):
+    """
+    将group_rules中每个DRG的入组逻辑变成字符串，即拼接列表中的每一项。
+    Args:
+        group_rules (list): 包含MDC主诊表规则和ADRG规则的列表。
+    Returns:
+        list: 修改后的规则列表。
+    """
+    for mdc in group_rules:
+        for adrg in mdc["包含的ADRG"]:
+            adrg["入组逻辑"] = ' + '.join(adrg["入组逻辑"])
+    export_to_json(group_rules, "../rules/group_rules.json")
 
 if __name__ == "__main__":
 
-    # 读取CSV文件
+    # # 读取CSV文件
     # file_path = "../doc/ADRG列表（65-1156）.xlsx"
     # df = pd.read_excel(file_path)
-    # # 移除数字
+    
+    # # 1.移除数字
     # df = remove_number(df)
-    # # 处理异常换行
+    # # 2.处理异常换行，即把异常换行的内容合并到上一行
     # df = handle_abnormal_linebreak(df)
-    # # 解析文本
+    # # 3.解析文本
     # origin_result = parse_text(df)
-    # export_to_json(origin_result, "../rules/ADRG_rules_origin.json")
-    result = read_json("../rules/group_rules.json")
-    # # 分离入组逻辑中的诊断和手术操作
+    # # export_to_json(origin_result, "../rules/ADRG_rules_origin.json")
+    # # 4.检查分组规则
+    # doctor_rules(result)
+    # # 5.分离入组逻辑中的诊断和手术操作
     # result = separate_grouping_logic(origin_result)
-    # # 保存结果
     # export_to_json(result, "../rules/ADRG_rules.json")
-    # print(f"结果已保存到 rules/ADRG_rules.json")
-
-    doctor_rules(result)
-
+    # # 6.人工整理分组规则后读取结果
+    result = read_json("../rules/group_rules.json")
+    # # 7. 检查ICD编码或名称是否为空，结果是ICD编码不为空，但是ICD名称存在空值；获取ICD名称
+    # error_icds = check_error_icd(result)
+    # # pd.DataFrame(error_icds).to_excel("error_icds.xlsx", index=False)
+    # icd_names = get_icd_name(df, error_icds)
+    # # pd.DataFrame(icd_names).to_excel("icd_names.xlsx", index=False)
+    # # check_keys = get_check_keys(result)
+    # # print(check_keys)
+    # # 8.更新ICD名称
+    # icd_names = pd.read_excel("icd_names.xlsx")
+    # update_icd_name(result, icd_names.to_dict(orient="records"))
+    # 9.去除空格
+    # remove_space(result)
+    # 10.合并入组逻辑
+    merge_grouping_logic(result)
