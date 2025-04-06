@@ -118,7 +118,9 @@ class DrgGrouper:
 
     def classify_into_adrg(self, mdc: Optional[MDC]):
         """
-        根据MDC编码和其他条件（如年龄、性别、手术等）入到ADRG组。
+        1. 首先判断能否入到MDCA组，如果能，则直接返回MDCA组。
+        2. 如果不能入到MDCA组，则根据MDC编码判断应该选择哪些ADRG组去判断
+        3. 最后根据诊断和手术判断应该选择哪个ADRG组
         :param mdc_code: 匹配的MDC编码
         :return: 匹配的ADRG编码，如果未找到则返回None
         """

@@ -105,5 +105,5 @@ for icd_pair, adrgs in duplicate_diag_oper.items():
 df = pd.DataFrame(results)
 
 # 保存为XLSX文件
-df.to_excel('duplicate_mappings.xlsx', index=False)
+df.to_excel('../results/duplicate_mappings.xlsx', index=False)
 

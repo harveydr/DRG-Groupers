@@ -1,0 +1,810 @@
+[
+  {
+    "vid": 1,
+    "gender": "男",
+    "age": 26,
+    "admit_date": "2024-09-17",
+    "dis_date": "2024-10-07",
+    "total_cost": 4557.69,
+    "birth_weight": 2.2,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "S01.800x011",
+        "diag_name": "开放性脑损伤伴颅骨骨折"
+      },
+      {
+        "diag_id": 2,
+        "diag_code": "S26.800x082",
+        "diag_name": "心脏穿透性损伤"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 2,
+    "gender": "男",
+    "age": 43,
+    "admit_date": "2024-03-03",
+    "dis_date": "2024-10-09",
+    "total_cost": 3401.32,
+    "birth_weight": 2.4,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A06.800x003",
+        "diag_name": "阿米巴精囊炎"
+      },
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 4,
+        "oper_code": "OP004",
+        "oper_name": "Knee Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 3,
+    "gender": "男",
+    "age": 74,
+    "admit_date": "2024-12-23",
+    "dis_date": "2024-12-26",
+    "total_cost": 1179.2,
+    "birth_weight": 3.5,
+    "diagnosis": [
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "S01.800x011",
+        "diag_name": "开放性脑损伤伴颅骨骨折"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 4,
+    "gender": "男",
+    "age": 39,
+    "admit_date": "2024-03-05",
+    "dis_date": "2024-09-02",
+    "total_cost": 1757.29,
+    "birth_weight": 3.5,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 5,
+    "gender": "女",
+    "age": 30,
+    "admit_date": "2024-03-07",
+    "dis_date": "2024-09-15",
+    "total_cost": 1466.93,
+    "birth_weight": 2.9,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "A32.101+G01*",
+        "diag_name": "脑膜炎"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 6,
+    "gender": "男",
+    "age": 21,
+    "admit_date": "2024-11-23",
+    "dis_date": "2024-12-27",
+    "total_cost": 4720.46,
+    "birth_weight": 2.2,
+    "diagnosis": [
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      },
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 5,
+        "oper_code": "OP005",
+        "oper_name": "Eye Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 7,
+    "gender": "男",
+    "age": 47,
+    "admit_date": "2024-10-31",
+    "dis_date": "2024-11-20",
+    "total_cost": 1951.1,
+    "birth_weight": 2.9,
+    "diagnosis": [
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "A32.101+G01*",
+        "diag_name": "脑膜炎"
+      },
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 8,
+    "gender": "男",
+    "age": 21,
+    "admit_date": "2024-05-31",
+    "dis_date": "2024-11-25",
+    "total_cost": 2173.76,
+    "birth_weight": 2.6,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      },
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 1,
+        "oper_code": "OP001",
+        "oper_name": "Heart Surgery"
+      },
+      {
+        "oper_id": 5,
+        "oper_code": "OP005",
+        "oper_name": "Eye Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 9,
+    "gender": "女",
+    "age": 51,
+    "admit_date": "2024-12-08",
+    "dis_date": "2024-12-28",
+    "total_cost": 1660.16,
+    "birth_weight": 2.8,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A32.101+G01*",
+        "diag_name": "脑膜炎"
+      },
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 10,
+    "gender": "女",
+    "age": 47,
+    "admit_date": "2024-09-09",
+    "dis_date": "2024-10-25",
+    "total_cost": 1081.21,
+    "birth_weight": 2.1,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A32.101+G01*",
+        "diag_name": "脑膜炎"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 11,
+    "gender": "女",
+    "age": 77,
+    "admit_date": "2024-06-15",
+    "dis_date": "2024-08-26",
+    "total_cost": 4387.83,
+    "birth_weight": 3.9,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 12,
+    "gender": "女",
+    "age": 45,
+    "admit_date": "2024-09-17",
+    "dis_date": "2024-10-05",
+    "total_cost": 2376.42,
+    "birth_weight": 3.8,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "S01.800x011",
+        "diag_name": "开放性脑损伤伴颅骨骨折"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 13,
+    "gender": "女",
+    "age": 52,
+    "admit_date": "2024-09-22",
+    "dis_date": "2024-12-03",
+    "total_cost": 4314.69,
+    "birth_weight": 3.7,
+    "diagnosis": [
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 5,
+        "oper_code": "OP005",
+        "oper_name": "Eye Surgery"
+      },
+      {
+        "oper_id": 1,
+        "oper_code": "OP001",
+        "oper_name": "Heart Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 14,
+    "gender": "女",
+    "age": 22,
+    "admit_date": "2024-07-09",
+    "dis_date": "2024-11-20",
+    "total_cost": 1946.04,
+    "birth_weight": 3.8,
+    "diagnosis": [
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      },
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 15,
+    "gender": "男",
+    "age": 74,
+    "admit_date": "2024-05-23",
+    "dis_date": "2024-08-01",
+    "total_cost": 3566.67,
+    "birth_weight": 2.9,
+    "diagnosis": [
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      },
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 16,
+    "gender": "男",
+    "age": 24,
+    "admit_date": "2024-01-23",
+    "dis_date": "2024-03-23",
+    "total_cost": 2211.31,
+    "birth_weight": 2.4,
+    "diagnosis": [
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 5,
+        "oper_code": "OP005",
+        "oper_name": "Eye Surgery"
+      },
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 17,
+    "gender": "女",
+    "age": 19,
+    "admit_date": "2024-04-21",
+    "dis_date": "2024-06-12",
+    "total_cost": 3138.9,
+    "birth_weight": 2.4,
+    "diagnosis": [
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 18,
+    "gender": "男",
+    "age": 45,
+    "admit_date": "2024-12-27",
+    "dis_date": "2024-12-30",
+    "total_cost": 1321.5,
+    "birth_weight": 2.4,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 19,
+    "gender": "女",
+    "age": 21,
+    "admit_date": "2024-03-10",
+    "dis_date": "2024-07-27",
+    "total_cost": 1084.57,
+    "birth_weight": 2.3,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      },
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 20,
+    "gender": "女",
+    "age": 37,
+    "admit_date": "2024-06-07",
+    "dis_date": "2024-08-05",
+    "total_cost": 2360.42,
+    "birth_weight": 2.6,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 3,
+        "oper_code": "OP003",
+        "oper_name": "Brain Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 21,
+    "gender": "男",
+    "age": 35,
+    "admit_date": "2024-12-22",
+    "dis_date": "2024-12-28",
+    "total_cost": 4657.7,
+    "birth_weight": 2.8,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      },
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 5,
+        "oper_code": "OP005",
+        "oper_name": "Eye Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 22,
+    "gender": "男",
+    "age": 57,
+    "admit_date": "2024-11-27",
+    "dis_date": "2024-12-13",
+    "total_cost": 4405.45,
+    "birth_weight": 2.1,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 23,
+    "gender": "男",
+    "age": 66,
+    "admit_date": "2024-06-10",
+    "dis_date": "2024-06-18",
+    "total_cost": 580.45,
+    "birth_weight": 3.8,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      },
+      {
+        "oper_id": 1,
+        "oper_code": "OP001",
+        "oper_name": "Heart Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 24,
+    "gender": "男",
+    "age": 30,
+    "admit_date": "2024-09-18",
+    "dis_date": "2024-10-08",
+    "total_cost": 3065.2,
+    "birth_weight": 3.1,
+    "diagnosis": [
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      },
+      {
+        "oper_id": 5,
+        "oper_code": "OP005",
+        "oper_name": "Eye Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 25,
+    "gender": "女",
+    "age": 26,
+    "admit_date": "2024-07-07",
+    "dis_date": "2024-08-15",
+    "total_cost": 549.22,
+    "birth_weight": 3.4,
+    "diagnosis": [
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      },
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 1,
+        "oper_code": "OP001",
+        "oper_name": "Heart Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 26,
+    "gender": "女",
+    "age": 41,
+    "admit_date": "2024-11-10",
+    "dis_date": "2024-12-15",
+    "total_cost": 1063.21,
+    "birth_weight": 3.4,
+    "diagnosis": [
+      {
+        "diag_id": 4,
+        "diag_code": "D03.3",
+        "diag_name": "Asthma"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 4,
+        "oper_code": "OP004",
+        "oper_name": "Knee Surgery"
+      },
+      {
+        "oper_id": 1,
+        "oper_code": "OP001",
+        "oper_name": "Heart Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 27,
+    "gender": "男",
+    "age": 53,
+    "admit_date": "2024-01-01",
+    "dis_date": "2024-04-02",
+    "total_cost": 3394.86,
+    "birth_weight": 2.4,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 5,
+        "oper_code": "OP005",
+        "oper_name": "Eye Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 28,
+    "gender": "男",
+    "age": 35,
+    "admit_date": "2024-04-29",
+    "dis_date": "2024-11-13",
+    "total_cost": 4235.8,
+    "birth_weight": 2.6,
+    "diagnosis": [
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      },
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      }
+    ]
+  },
+  {
+    "vid": 29,
+    "gender": "男",
+    "age": 52,
+    "admit_date": "2024-10-04",
+    "dis_date": "2024-12-27",
+    "total_cost": 1593.5,
+    "birth_weight": 3.8,
+    "diagnosis": [
+      {
+        "diag_id": 5,
+        "diag_code": "E04.4",
+        "diag_name": "Arthritis"
+      },
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      }
+    ],
+    "surgery": []
+  },
+  {
+    "vid": 30,
+    "gender": "女",
+    "age": 37,
+    "admit_date": "2024-10-22",
+    "dis_date": "2024-12-01",
+    "total_cost": 2158.81,
+    "birth_weight": 3.4,
+    "diagnosis": [
+      {
+        "diag_id": 1,
+        "diag_code": "A00.0",
+        "diag_name": "Hypertension"
+      },
+      {
+        "diag_id": 2,
+        "diag_code": "B01.1",
+        "diag_name": "Diabetes"
+      },
+      {
+        "diag_id": 3,
+        "diag_code": "C02.2",
+        "diag_name": "Cancer"
+      }
+    ],
+    "surgery": [
+      {
+        "oper_id": 2,
+        "oper_code": "OP002",
+        "oper_name": "Lung Surgery"
+      }
+    ]
+  }
+]
